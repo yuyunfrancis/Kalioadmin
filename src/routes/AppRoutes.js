@@ -2,9 +2,9 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "../components/header/Header";
 import Sidebar from "../components/Sidebar";
-import AddPacks from "../kalio/AddPacks";
-import AddPlanttype from "../kalio/AddPLanttype";
-import AddSpeciality from "../kalio/AddSpeciality";
+import AddPacks from "../layouts/kalio/packs/AddPacks";
+import AddPlanttype from "../layouts/kalio/AddPLanttype";
+import AddSpeciality from "../layouts/kalio/AddSpeciality";
 import AddMainCategory from "../layouts/category/AddMainCategory";
 import AddSubCategory from "../layouts/category/AddSubCategory";
 import Categories from "../layouts/category/Categories";
@@ -13,6 +13,7 @@ import AgroExperts from "../layouts/expert/AgroExperts";
 import AddLaboratory from "../layouts/laboratory/AddLaboratory";
 import Laboratories from "../layouts/laboratory/Laboratories";
 import Dashboard from "../pages/dashboard/Dashboard";
+import KalioData from "../layouts/kalio/KalioData";
 
 const AppRoutes = () => {
   return (
@@ -29,6 +30,7 @@ const AppRoutes = () => {
           <Route path="/categories" element={<Categories />} />
           <Route path="/add-maincategory" element={<AddMainCategory />} />
           <Route path="/add-subCategory" element={<AddSubCategory />} />
+          <Route path="/kalio-data" element={<KalioData />} />
           <Route path="/add-speciality" element={<AddSpeciality />} />
           <Route path="/add-plantype" element={<AddPlanttype />} />
           <Route path="/add-packs" element={<AddPacks />} />
