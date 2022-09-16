@@ -78,7 +78,7 @@ const data = [
         path: "/add-plantype",
       },
     ],
-    path: "/laboratories",
+    path: "/kalio-data",
   },
 ];
 

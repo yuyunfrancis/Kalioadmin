@@ -5,7 +5,9 @@ import { MdArrowDropUp, MdArrowDropDown } from "react-icons/md";
 import StatsCard from "../../components/cards/StatsCard";
 import WelcomeBanner from "../../components/WelcomeBanner";
 import IncomeChart from "../../components/charts/IncomeChart";
-import DashboardIncomeChart from "./DashboardIcomeChart";
+import RevenueChart from "../../components/charts/RevenueChart";
+import CountryCharts from "../../components/charts/CountryCharts";
+import CityChart from "../../components/charts/CityChart";
 
 const userData = {
   title: "Total Users",
@@ -86,8 +88,17 @@ const Dashboard = () => {
           }
         />
       </div>
-      <div className="flex mt-8 md:gap-6">
-        <DashboardIncomeChart />
+
+      {/* finacial stats */}
+      <div className="flex justify-between mt-8 md:gap-6 ">
+        <IncomeChart />
+        <RevenueChart />
+      </div>
+
+      {/* countries and cities */}
+      <div className="flex justify-between mt-8 md:gap-6 ">
+        <CountryCharts />
+        <CityChart />
       </div>
     </div>
   );

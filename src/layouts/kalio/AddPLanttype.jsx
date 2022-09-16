@@ -1,9 +1,9 @@
 import axios from "axios";
 import { Alert } from "bootstrap";
 import React, { useContext, useState } from "react";
-import { config } from "../config/config";
-import UserContext from "../contexts/UserContext";
-import usePostData from "../hooks/usePostData";
+import { config } from "../../config/config";
+import UserContext from "../../contexts/UserContext";
+import usePostData from "../../hooks/usePostData";
 
 function AddPlanttype() {
   const [name, setName] = useState("");
