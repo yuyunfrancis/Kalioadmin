@@ -4,7 +4,7 @@ import Header from "../components/header/Header";
 import Sidebar from "../components/Sidebar";
 import AddPacks from "../layouts/kalio/packs/AddPacks";
 import AddPlanttype from "../layouts/kalio/AddPLanttype";
-import AddSpeciality from "../layouts/kalio/AddSpeciality";
+import AddSpeciality from "../layouts/kalio/speciality/AddSpeciality";
 import AddMainCategory from "../layouts/category/AddMainCategory";
 import AddSubCategory from "../layouts/category/AddSubCategory";
 import Categories from "../layouts/category/Categories";
