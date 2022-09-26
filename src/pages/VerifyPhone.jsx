@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import UserContext from "../contexts/UserContext";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { config } from "../config/config";
 
 const VerifyPhone = () => {
@@ -15,7 +15,6 @@ const VerifyPhone = () => {
 
   const { user, loginUser } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (user !== null) {
@@ -39,14 +38,14 @@ const VerifyPhone = () => {
       });
   };
 
-  const storeSessionData = async (value) => {
-    try {
-      const jsonValue = JSON.stringify(value);
-      localStorage.setItem("user", jsonValue);
-    } catch (e) {
-      // saving error
-    }
-  };
+  // const storeSessionData = async (value) => {
+  //   try {
+  //     const jsonValue = JSON.stringify(value);
+  //     localStorage.setItem("user", jsonValue);
+  //   } catch (e) {
+  //     // saving error
+  //   }
+  // };
 
   const verifyOtp = () => {
     const newOtp = otp;
@@ -65,10 +64,8 @@ const VerifyPhone = () => {
         if (response.data.verificationStatus.status === "approved") {
           const userLog = response.data.user;
           userLog.token = response.data.access_token;
-          console.log("====================================");
-          console.log("UserToken", userLog);
-          console.log("====================================");
           await loginUser(userLog);
+          navigate("/");
           // await Updates.reloadAsync();
         }
       })

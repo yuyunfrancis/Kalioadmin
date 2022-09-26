@@ -1,6 +1,16 @@
 import React, { useState } from "react";
+import { config } from "../../config/config";
+import useDataFetching from "../../hooks/UseDataFetching";
 
 function Categories() {
+  const [loading, error, categories] = useDataFetching(
+    `${config.app.api_url}/products`
+  );
+
+  console.log("====================================");
+  console.log("Categories", categories);
+  console.log("====================================");
+
   const [open, setOpen] = useState(true);
 
   return (

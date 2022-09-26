@@ -14,6 +14,9 @@ import AddLaboratory from "../layouts/laboratory/AddLaboratory";
 import Laboratories from "../layouts/laboratory/Laboratories";
 import Dashboard from "../pages/dashboard/Dashboard";
 import KalioData from "../layouts/kalio/KalioData";
+import Products from "../layouts/products/Products";
+import StatsAgroExpert from "../layouts/expert/StatsAgroExpert";
+import Statistics from "../layouts/products/Statistics";
 
 const AppRoutes = () => {
   return (
@@ -25,6 +28,7 @@ const AppRoutes = () => {
           <Route path="/" element={<Dashboard />} />
           <Route path="/experts" element={<AgroExperts />} />
           <Route path="/add-expert" element={<AddExpert />} />
+          <Route path="/experts/statistics" element={<StatsAgroExpert />} />
           <Route path="/laboratories" element={<Laboratories />} />
           <Route path="/add-laboratory" element={<AddLaboratory />} />
           <Route path="/categories" element={<Categories />} />
@@ -34,6 +38,9 @@ const AppRoutes = () => {
           <Route path="/add-speciality" element={<AddSpeciality />} />
           <Route path="/add-plantype" element={<AddPlanttype />} />
           <Route path="/add-packs" element={<AddPacks />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/statistics" element={<Statistics />} />
+
           {/* <Route path="/login" element={<Login />} />
           <Route path="/verify-phone" element={<VerifyPhone />} /> */}
         </Routes>

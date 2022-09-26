@@ -1,6 +1,9 @@
 import React from "react";
 
 function WelcomeBanner() {
+  var day = new Date();
+  var hr = day.getHours();
+
   return (
     <div className="relative bg-indigo-200 p-4 sm:p-6 rounded-md overflow-hidden mb-8">
       {/* Background illustration */}
@@ -69,7 +72,15 @@ function WelcomeBanner() {
       {/* Content */}
       <div className="relative">
         <h1 className="text-2xl md:text-3xl text-slate-900 font-bold mb-1">
-          Good afternoon, Admin. 👋
+          {` ${
+            hr >= 0 && hr < 12
+              ? "Good Morning! "
+              : hr == 12
+              ? "Good Noon!"
+              : hr >= 12 && hr <= 17
+              ? "Good Afternoon!"
+              : "Good Evening"
+          } Admin. 👋`}
         </h1>
         <p>Here is what’s happening today:</p>
       </div>
@@ -78,3 +89,13 @@ function WelcomeBanner() {
 }
 
 export default WelcomeBanner;
+
+//  if (hr >= 0 && hr < 12) {
+//    document.write("Good Morning!");
+//  } else if (hr == 12) {
+//    document.write("Good Noon!");
+//  } else if (hr >= 12 && hr <= 17) {
+//    document.write("Good Afternoon!");
+//  } else {
+//    document.write("Good Evening!");
+//  }

@@ -10,10 +10,6 @@ const Packs = () => {
     `${config.app.api_url}/packs`
   );
 
-  console.log("====================================");
-  console.log("Experts", packs);
-  console.log("====================================");
-
   const navigate = useNavigate();
   return (
     <div className="overflow-x-auto relative shadow-md sm:rounded-lg px-4 py-4">

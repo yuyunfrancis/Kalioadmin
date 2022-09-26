@@ -1,9 +1,4 @@
-import {
-  BsArrowLeftShort,
-  BsSearch,
-  BsChevronDown,
-  BsBriefcase,
-} from "react-icons/bs";
+import { FiShoppingBag } from "react-icons/fi";
 import { ImLab } from "react-icons/im";
 import { AiOutlineDashboard, AiOutlineDatabase } from "react-icons/ai";
 import { HiOutlineUsers } from "react-icons/hi";
@@ -11,6 +6,7 @@ import { FaUserSecret, FaTasks } from "react-icons/fa";
 import { BiCategory } from "react-icons/bi";
 import { GoPackage } from "react-icons/go";
 import { RiPlantLine } from "react-icons/ri";
+import { IoStatsChartOutline } from "react-icons/io5";
 
 const data = [
   {
@@ -32,6 +28,15 @@ const data = [
     icon: (
       <FaUserSecret className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900" />
     ),
+    childrens: [
+      {
+        title: "Statistics",
+        icon: (
+          <IoStatsChartOutline className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900" />
+        ),
+        path: "/experts/statistics",
+      },
+    ],
 
     path: "/experts",
   },
@@ -44,12 +49,29 @@ const data = [
     path: "/laboratories",
   },
   {
+    title: "Products",
+    icon: (
+      <FiShoppingBag className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900" />
+    ),
+    childrens: [
+      {
+        title: "Statistics",
+        icon: (
+          <IoStatsChartOutline className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900" />
+        ),
+        path: "/products/statistics",
+      },
+    ],
+    path: "/products",
+  },
+  {
     title: "Categories",
     icon: (
       <BiCategory className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900" />
     ),
     path: "/categories",
   },
+
   {
     title: "Kalio Data",
     icon: (

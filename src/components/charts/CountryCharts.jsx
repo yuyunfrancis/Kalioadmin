@@ -1,12 +1,8 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-const CountryCharts = () => {
-  const series = [
-    {
-      data: [21, 22, 10, 28, 16, 21, 13, 30, 50, 40],
-    },
-  ];
+const CountryCharts = ({ series, categories, label }) => {
+  // const series = data;
 
   const options = {
     chart: {
@@ -26,24 +22,21 @@ const CountryCharts = () => {
       },
     },
     dataLabels: {
-      enabled: false,
+      enabled: true,
+      formatter: function (val) {
+        return val;
+      },
+      offsetY: -20,
+      style: {
+        fontSize: "12px",
+        colors: ["#304758"],
+      },
     },
     legend: {
       show: false,
     },
     xaxis: {
-      categories: [
-        "Cameroon",
-        "Ghana",
-        "Nigeria",
-        "USA",
-        "Togo",
-        "Congo",
-        "France",
-        "Kenya",
-        "Germany",
-        "South Africa",
-      ],
+      categories: categories,
       labels: {
         style: {
           //   colors: colors,
@@ -53,9 +46,9 @@ const CountryCharts = () => {
     },
   };
   return (
-    <div className="overflow-x-auto relative shadow-md sm:rounded-lg px-4 mt-6 py-5 w-3/5">
+    <div className="overflow-x-auto relative shadow-md sm:rounded-lg px-4 mt-6 py-5 w-1/2">
       <div className="flex justify-between items-center">
-        <h4 className="text-slate-900 font-medium">Country Statistics</h4>
+        <h4 className="text-slate-900 font-medium">{label}</h4>
       </div>
       <Chart options={options} series={series} type="bar" height={350} />
     </div>

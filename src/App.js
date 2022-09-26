@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import { Routes, Route, Redirect, BrowserRouter } from "react-router-dom";
 import UserContext from "./contexts/UserContext";
 import AppRoutes from "./routes/AppRoutes";
 

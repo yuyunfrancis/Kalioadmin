@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Donut from "../../components/charts/Donut";
 import IncomeChart from "../../components/charts/IncomeChart";
 import Packs from "./packs/Packs";
+import Specialities from "./speciality/Specialities";
 
 const KalioData = () => {
   const navigate = useNavigate();
@@ -11,9 +12,10 @@ const KalioData = () => {
       <div>
         <h3>Kalio Data</h3>
       </div>
-      <div>
-        <Packs />
-      </div>
+
+      <Packs />
+
+      <Specialities />
     </div>
   );
 };
