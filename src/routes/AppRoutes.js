@@ -17,6 +17,7 @@ import KalioData from "../layouts/kalio/KalioData";
 import Products from "../layouts/products/Products";
 import StatsAgroExpert from "../layouts/expert/StatsAgroExpert";
 import Statistics from "../layouts/products/Statistics";
+import AddDisease from "../layouts/kalio/AddDisease";
 
 const AppRoutes = () => {
   return (
@@ -37,6 +38,7 @@ const AppRoutes = () => {
           <Route path="/kalio-data" element={<KalioData />} />
           <Route path="/add-speciality" element={<AddSpeciality />} />
           <Route path="/add-plantype" element={<AddPlanttype />} />
+          <Route path="/kalio/add-disease" element={<AddDisease />} />
           <Route path="/add-packs" element={<AddPacks />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/statistics" element={<Statistics />} />

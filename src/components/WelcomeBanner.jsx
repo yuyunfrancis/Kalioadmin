@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import UserContext from "../contexts/UserContext";
 
 function WelcomeBanner() {
   var day = new Date();
   var hr = day.getHours();
+
+  const { user, logoutUser } = useContext(UserContext);
 
   return (
     <div className="relative bg-indigo-200 p-4 sm:p-6 rounded-md overflow-hidden mb-8">
@@ -80,7 +83,7 @@ function WelcomeBanner() {
               : hr >= 12 && hr <= 17
               ? "Good Afternoon!"
               : "Good Evening"
-          } Admin. 👋`}
+          } ${user?.name}. 👋`}
         </h1>
         <p>Here is what’s happening today:</p>
       </div>

@@ -181,72 +181,78 @@ const AgroExperts = () => {
               </>
             ) : (
               <>
-                {experts.data.map((expert, index) => (
-                  <tr
-                    key={index}
-                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                  >
-                    <td className="p-4 w-4">
-                      <div className="flex items-center">
-                        <input
-                          id="checkbox-table-search-1"
-                          type="checkbox"
-                          className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                        />
-                        <label
-                          htmlFor="checkbox-table-search-1"
-                          className="sr-only"
+                {experts?.data?.length > 0 ? (
+                  <>
+                    {experts.data.map((expert, index) => (
+                      <tr
+                        key={index}
+                        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                      >
+                        <td className="p-4 w-4">
+                          <div className="flex items-center">
+                            <input
+                              id="checkbox-table-search-1"
+                              type="checkbox"
+                              className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                            />
+                            <label
+                              htmlFor="checkbox-table-search-1"
+                              className="sr-only"
+                            >
+                              checkbox
+                            </label>
+                          </div>
+                        </td>
+                        <th
+                          scope="row"
+                          className="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white"
                         >
-                          checkbox
-                        </label>
-                      </div>
-                    </td>
-                    <th
-                      scope="row"
-                      className="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      <img
-                        className="w-10 h-10 rounded-full"
-                        src={img}
-                        alt={expert.name}
-                      />
-                      <div className="pl-3">
-                        <div className="text-base font-semibold">
-                          {expert.name}
-                        </div>
-                        <div className="font-normal text-gray-500">
-                          {expert.email}
-                        </div>
-                      </div>
-                    </th>
-                    <td className="py-4 px-6">{expert.country}</td>
-                    <td className="py-4 px-6">{expert.city}</td>
+                          <img
+                            className="w-10 h-10 rounded-full"
+                            src={img}
+                            alt={expert.name}
+                          />
+                          <div className="pl-3">
+                            <div className="text-base font-semibold">
+                              {expert.name}
+                            </div>
+                            <div className="font-normal text-gray-500">
+                              {expert.email}
+                            </div>
+                          </div>
+                        </th>
+                        <td className="py-4 px-6">{expert.country}</td>
+                        <td className="py-4 px-6">{expert.city}</td>
 
-                    <td className="py-4 px-6">Soil Fertility</td>
-                    <td className="py-4 px-6">
-                      <div className="flex items-center">
-                        <div className="h-2.5 w-2.5 rounded-full bg-green-700 mr-2"></div>
-                        Active
-                      </div>
-                    </td>
-                    <td className="py-4 px-6">
-                      <div className="flex items-center space-x-3">
-                        <button
-                          href="#"
-                          className="font-medium text-blue-600 hover:underline"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={(e) => handleDelete(expert._id, e)}
-                          className="font-medium text-red-600 hover:underline"
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                        <td className="py-4 px-6">Soil Fertility</td>
+                        <td className="py-4 px-6">
+                          <div className="flex items-center">
+                            <div className="h-2.5 w-2.5 rounded-full bg-green-700 mr-2"></div>
+                            Active
+                          </div>
+                        </td>
+                        <td className="py-4 px-6">
+                          <div className="flex items-center space-x-3">
+                            <button
+                              href="#"
+                              className="font-medium text-blue-600 hover:underline"
+                            >
+                              Edit
+                            </button>
+                            <button
+                              onClick={(e) => handleDelete(expert._id, e)}
+                              className="font-medium text-red-600 hover:underline"
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </>
+                ) : (
+                  <h3>No Data Found</h3>
+                )}
               </>
             )}
           </tbody>

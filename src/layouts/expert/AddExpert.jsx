@@ -9,29 +9,17 @@ import { config } from "../../config/config";
 import usePostData from "../../hooks/usePostData";
 import UserContext from "../../contexts/UserContext";
 
-// const specialities = [
-//   { value: 1, label: "Plant treatment" },
-//   { value: 2, label: "Disease detection" },
-//   { value: 3, label: "Soil Examination" },
-//   { value: 4, label: "Soil treatment" },
-//   { value: 5, label: "Seed Cultivation" },
-// ];
 const AddExpert = () => {
   const { user } = useContext(UserContext);
   const [open, setOpen] = useState(true);
   const [value, setValue] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState(null);
-  // const [loading, error, experts] = usePostData(
-  //   `${config.app.api_url}/agro-expert`
-  // );
 
   const [name, setName] = useState("");
-  // const [name, setLName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
-  const [bname, setBName] = useState("");
   const [specialities, setSpecialities] = useState([]);
   const [speciality, setSpeciality] = useState("");
   const [description, setDescription] = useState("");
@@ -41,34 +29,6 @@ const AddExpert = () => {
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(false);
-  // const [message, setMessage] = useState("");
-
-  const setField = (field, value) => {
-    setForm({
-      ...form,
-      [field]: value,
-    });
-
-    if (!!errors[field])
-      setErrors({
-        ...errors,
-        [field]: null,
-      });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    console.log("====================================");
-    console.log(form);
-    console.log("====================================");
-  };
-
-  const setHandle = (e) => {
-    setSelectedOptions(Array.isArray(e) ? e.map((hotel) => hotel.label) : []);
-  };
 
   const fetchData = () => {
     const speciliteUrl = `${config.app.api_url}/specialities`;
@@ -91,14 +51,11 @@ const AddExpert = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  // console.log("logoImage", logoImg);
 
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
 
     TransformFile(file);
-
-    // console.log("Logo", file);
   };
   const TransformFile = (file) => {
     const reader = new FileReader();
@@ -113,21 +70,11 @@ const AddExpert = () => {
     }
   };
 
-  // const [loading, postData] = usePostData(
-  //   `${config.app.api_url}/agro-expert`,
-  //   "POST"
-  // );
-
   const [loading, postAxiosData] = usePostData(`agro-expert`, "POST");
 
   const addExpert = async (e) => {
-    console.log("====================================");
-    console.log("specility", speciality);
-    console.log("====================================");
     e.preventDefault();
     const data = new FormData();
-    // const prix = parseInt(price);
-
     data.append("name", name);
     data.append("city", city);
     data.append("country", country);
@@ -145,33 +92,18 @@ const AddExpert = () => {
     data.append("description", description);
     data.append("image", logoImg);
 
-    // console.log("Form", [...FormData]);
-
     const result = await postAxiosData(data).then((res) => {
       return res;
     });
 
     if (result !== null && result.data) {
-      setForm({});
+      // setForm({});
     }
-    // setLoading(true);
-    // await axios({
-    //   method: "POST",
-    //   url: `${config.app.api_url}/agro-expert`,
-    //   data: form,
-    //   headers: { Authorization: "Bearer " + user.token },
-    // })
-    //   .then((res) => {
-    //     console.log("res", res);
-    //     alert("success", res.data.message, "success");
-    //     setLoading(false);
-    //   })
-    //   .catch((err) => {
-    //     console.log("err", err);
-    //     setError(err.message);
-    //     setLoading(false);
-    //   });
   };
+
+  console.log("====================================");
+  console.log(logoImg);
+  console.log("====================================");
   return (
     <div className="p-8">
       <div>
@@ -383,33 +315,25 @@ const AddExpert = () => {
           </div>
           <div className="mt-6 mb-8">
             <div>
-              <label className="block text-sm font-medium text-slate-900">
-                logo
-              </label>
-              <div className="mt-1 flex items-center">
-                {logoImg ? (
-                  <img
-                    className="w-36 h-auto rounded-lg transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0"
-                    src={logoImg}
-                    alt="image description"
+              <div className="flex items-start">
+                <div className="mb-3 w-96">
+                  <label
+                    htmlFor="formFile"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                  >
+                    Choose Image
+                  </label>
+                  <input
+                    className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-green-700 focus:outline-none"
+                    type="file"
+                    id="formFile"
+                    onChange={(e) => setLogoImg(e.target.files[0])}
                   />
-                ) : (
-                  <span className="inline-block h-20 w-36 overflow-hidden rounded-md bg-gray-100">
-                    <BsImageFill className="h-full w-full text-gray-300 " />
-                  </span>
-                )}
-
-                <button
-                  type="button"
-                  // onClick={handleProductImageUpload}
-                  className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
-                >
-                  Change
-                </button>
+                </div>
               </div>
             </div>
 
-            <div className="mt-4">
+            {/* <div className="mt-4">
               <label
                 htmlFor="image"
                 className="block text-sm font-medium text-slate-900"
@@ -444,7 +368,7 @@ const AddExpert = () => {
                         type="file"
                         className="sr-only"
                         // value={logoImg}
-                        onChange={handleProductImageUpload}
+                        onChange={(e) => setLogoImg(e.target.files[0])}
                       />
                     </label>
                     <p className="pl-1">or drag and drop</p>
@@ -455,7 +379,7 @@ const AddExpert = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="mt-8 float-right">
             <button

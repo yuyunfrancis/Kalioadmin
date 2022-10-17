@@ -14,8 +14,8 @@ const KalioData = () => {
       </div>
 
       <Packs />
-
-      <Specialities />
+      {/* 
+      <Specialities /> */}
     </div>
   );
 };

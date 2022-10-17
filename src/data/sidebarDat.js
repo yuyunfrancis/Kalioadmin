@@ -97,6 +97,12 @@ const data = [
         icon: (
           <RiPlantLine className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900" />
         ),
+        childrens: [
+          {
+            title: "Add Disease",
+            path: "/kalio/add-disease",
+          },
+        ],
         path: "/add-plantype",
       },
     ],
