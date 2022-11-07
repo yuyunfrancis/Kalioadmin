@@ -1,6 +1,6 @@
 export const config = {
   app: {
-    api_url: "https://kalio-api.herokuapp.com/api",
+    api_url: "http://api.kalio.io/api",
     // python_api_url: "https://kalio-disease.herokuapp.com/api",
     python_api_url: "http://app.kalio.io",
     chat_api_url: "https://kalio-chat.herokuapp.com/",

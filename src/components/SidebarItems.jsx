@@ -7,11 +7,15 @@ const SidebarItems = ({ item, openSidebar = true }) => {
   const [open, setOpen] = useState(false);
   const [submenuOpen, setSubmenuOpen] = useState(false);
 
+  const active =
+    "bg-slate-300 text-gray rounded-lg flex items-center p-2 mt-3 text-base";
+  const activeDd =
+    "bg-slate-300 text-gray rounded-lg flex items-center p-2 mt-3 text-base";
   if (item.childrens) {
     return (
       <div>
         <ul className="space-y-2">
-          <li className="flex items-center p-2 mt-3 text-base font-normal text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+          <li className=" flex items-center p-2 mt-3 text-base font-normal text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
             {item.icon}
             <span
               onClick={() => (window.location.pathname = item.path)}
@@ -42,7 +46,11 @@ const SidebarItems = ({ item, openSidebar = true }) => {
     return (
       <button
         onClick={() => (window.location.pathname = item.path)}
-        className="flex items-center p-2 mt-3 text-base font-normal text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+        className={`  ${
+          window.location.pathname == item.path
+            ? active
+            : "flex items-center p-2 mt-3 text-base font-normal text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+        } `}
       >
         {item.icon}
         <span className={`ml-3 ${!openSidebar && "hidden"}`}>{item.title}</span>

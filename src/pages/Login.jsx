@@ -28,16 +28,25 @@ const Login = () => {
     setError();
   }, []);
 
-  const buttonPress = () => {
+  const buttonPress = (e) => {
+    e.preventDefault();
     if (!phoneNumber) {
-      alert("success", "Enter a valid phone number");
+      alert("Error", "Enter a valid phone number");
       return;
     }
     setLoading(true);
     axios
-      .post(`${config.app.api_url}/request-verification-code`, {
-        phone: phoneNumber,
-      })
+      .post(
+        `${config.app.api_url}/request-verification-code`,
+        {
+          phone: phoneNumber,
+        },
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      )
       .then((response) => {
         setLoading(false);
         if (response.status === 201) {

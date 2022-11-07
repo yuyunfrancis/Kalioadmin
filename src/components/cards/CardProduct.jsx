@@ -10,7 +10,7 @@ const CardProduct = ({ title, rate, total, icon, color, level }) => {
               <p class="mb-0 font-sans font-bold leading-normal uppercase text-sm">
                 {title}
               </p>
-              <h5 class="mb-2 font-medium text-xl dark:text-white">{total}</h5>
+              <h5 class="mb-2 font-medium text-xl text-slate-900">{total}</h5>
               <p class="mb-0 dark:text-white dark:opacity-60">
                 <span class={`font-bold leading-normal text-sm ${color}`}>
                   {rate}
