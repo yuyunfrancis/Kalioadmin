@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext({});
 const initialState = {
@@ -32,7 +33,7 @@ const reducer = (state, action) => {
 
 export const UserContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const navigate = useNavigate();
   async function loginUser(user) {
     try {
       dispatch({ type: "SET_USER", payload: user });
@@ -46,6 +47,7 @@ export const UserContextProvider = ({ children }) => {
     try {
       localStorage.removeItem("user");
       dispatch({ type: "REMOVE_USER" });
+      navigate("/");
     } catch (e) {}
   }
 

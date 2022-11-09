@@ -246,15 +246,6 @@ const StatsAgroExpert = () => {
         </div>
         <div className="flex items-center justify-between mt-6">
           <CountryCharts
-            series={series}
-            label={label}
-            categories={categories}
-            // title="Speciality Summary"
-          />
-          <CityChart series={series1} labels={services} title="Services" />
-        </div>
-        <div className="flex items-center justify-between mt-6">
-          <CountryCharts
             series={countryData}
             label="Top 5 Counties with highest Agro-Expert"
             categories={countries}
@@ -262,6 +253,15 @@ const StatsAgroExpert = () => {
 
           <CityChart series={seriesCity} labels={cities} title="Top Cities" />
         </div>
+        {/* <div className="flex items-center justify-between mt-6">
+          <CountryCharts
+            series={series}
+            label={label}
+            categories={categories}
+            // title="Speciality Summary"
+          />
+          <CityChart series={series1} labels={services} title="Services" />
+        </div> */}
       </div>
     </div>
   );

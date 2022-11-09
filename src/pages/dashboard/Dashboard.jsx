@@ -21,7 +21,6 @@ const Dashboard = () => {
     `${config.app.api_url}/agro-expert`
   );
 
-  log;
   const [laboratoryLoading, laboratoryError, laboratories] = useDataFetching(
     `${config.app.api_url}/laboratories`
   );
