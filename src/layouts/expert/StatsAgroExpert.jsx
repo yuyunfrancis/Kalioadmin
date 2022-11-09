@@ -11,82 +11,156 @@ import CountryCharts from "../../components/charts/CountryCharts";
 import RevenueChart from "../../components/charts/RevenueChart";
 import { config } from "../../config/config";
 import UserContext from "../../contexts/UserContext";
-
-const data = {
-  title: "Experts",
-  total: 40,
-  value: "experts",
-  bgColor: "bg-purple-200",
-  icon: (
-    <FaUserSecret className="text-purple-500 h-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-  ),
-  rate: 12,
-  time: "Last Month",
-};
-const revenue = {
-  title: "Icome from Experts",
-  total: 50000,
-  value: "XAF",
-  bgColor: "bg-purple-200",
-  icon: (
-    <MdOutlineAttachMoney className="text-purple-500 h-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-  ),
-  rate: 25,
-  time: "Last Month",
-};
-const paid = {
-  title: "Paid",
-  total: 4000,
-  value: "XAF",
-  bgColor: "bg-purple-200",
-  icon: (
-    <MdOutlineMonetizationOn className="text-purple-500 h-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-  ),
-  rate: 20,
-  time: "Last Month",
-};
-const sales = {
-  title: "Sales from Experts",
-  total: 500000,
-  value: "XAF",
-  bgColor: "bg-purple-200",
-  icon: (
-    <FaMoneyCheckAlt className="text-purple-500 h-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-  ),
-  rate: 20,
-  time: "Last Month",
-};
-
-const label = "Specialities";
+import useDataFetching from "../../hooks/UseDataFetching";
 
 const StatsAgroExpert = () => {
   const { user } = useContext(UserContext);
-  // const [categories, setCategories] = useState([]);
+  const [specialities, setSpecialities] = useState([]);
+
+  const [expertLoading, expertError, experts] = useDataFetching(
+    `${config.app.api_url}/agro-expert`
+  );
+
+  const [
+    transactionLoading,
+    transactionError,
+    transactions,
+    fetchTransactionData,
+  ] = useDataFetching(`${config.app.api_url}/transaction`);
+
+  const [serviceLoading, serviceError, service] = useDataFetching(
+    `${config.app.api_url}/services`
+  );
+
+  const countriesData = expertLoading || expertError ? [] : experts?.data;
+
+  let expertCountries = [];
+  countriesData.map((item) => {
+    expertCountries.push({
+      country: item.country,
+    });
+  });
+
+  let expertCities = [];
+  countriesData.map((item) => {
+    expertCities.push({
+      city: item.city,
+    });
+  });
+
+  function findOcc(arr, key) {
+    let pays = [];
+
+    arr.forEach((x) => {
+      // Checking if there is any object in arr2
+      // which contains the key value
+      if (
+        pays.some((val) => {
+          return val[key] == x[key];
+        })
+      ) {
+        // If yes! then increase the occurrence by 1
+        pays.forEach((k) => {
+          if (k[key] === x[key]) {
+            k["occurrence"]++;
+          }
+        });
+      } else {
+        // If not! Then create a new object initialize
+        // it with the present iteration key's value and
+        // set the occurrence to 1
+        let a = {};
+        a[key] = x[key];
+        a["occurrence"] = 1;
+        pays.push(a);
+      }
+    });
+
+    return pays;
+  }
+
+  let key = "country";
+
+  console.log("====================================");
+  console.log("Experts", experts);
+  console.log("====================================");
+
+  const data = {
+    title: "Experts",
+    total: expertLoading || expertError ? 0 : experts?.data?.length,
+    value: "experts",
+    bgColor: "bg-purple-200",
+    icon: (
+      <FaUserSecret className="text-purple-500 h-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+    ),
+    rate: 12,
+    time: "Last Month",
+  };
+  const revenue = {
+    title: "Icome from Experts",
+    total: 50000,
+    value: "XAF",
+    bgColor: "bg-purple-200",
+    icon: (
+      <MdOutlineAttachMoney className="text-purple-500 h-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+    ),
+    rate: 25,
+    time: "Last Month",
+  };
+  const paid = {
+    title: "Paid",
+    total: 4000,
+    value: "XAF",
+    bgColor: "bg-purple-200",
+    icon: (
+      <MdOutlineMonetizationOn className="text-purple-500 h-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+    ),
+    rate: 20,
+    time: "Last Month",
+  };
+  const sales = {
+    title: "Sales from Experts",
+    total: 500000,
+    value: "XAF",
+    bgColor: "bg-purple-200",
+    icon: (
+      <FaMoneyCheckAlt className="text-purple-500 h-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+    ),
+    rate: 20,
+    time: "Last Month",
+  };
+
+  const label = "Specialities";
 
   const categories = ["Soil Fertility", "Water Specialits", "Lab Expert"];
 
-  // const fetchData = () => {
-  //   const speciliteUrl = `${config.app.api_url}/specialities`;
-  //   const getSpecialities = axios.get(speciliteUrl, {
-  //     headers: { Authorization: "Bearer " + user.token },
-  //   });
+  const fetchData = () => {
+    const speciliteUrl = `${config.app.api_url}/specialities`;
+    const getSpecialities = axios.get(speciliteUrl, {
+      headers: { Authorization: "Bearer " + user.token },
+    });
 
-  //   axios.all([getSpecialities]).then(
-  //     axios.spread(async (...allData) => {
-  //       const allSpecialityData = allData[0].data.data;
-  //       console.log("sdjsjdjd", allSpecialityData);
-  //       let species = [];
-  //       await allSpecialityData.forEach((item) => {
-  //         species.push({ label: item.libelle, value: item._id });
-  //       });
-  //       setCategories(species);
-  //     })
-  //   );
-  // };
+    axios.all([getSpecialities]).then(
+      axios.spread(async (...allData) => {
+        const allSpecialityData = allData[0].data.data;
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+        let species = [];
+        await allSpecialityData.forEach((item) => {
+          species.push({ label: item.libelle, value: item._id });
+        });
+        setSpecialities(species);
+      })
+    );
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // console.log(
+  //   "specialities",
+  //   specialities?.map((item) => item.label)
+  // );
 
   const series = [
     {
@@ -94,7 +168,6 @@ const StatsAgroExpert = () => {
     },
   ];
 
-  const series1 = [44, 55, 13, 43, 22];
   const services = [
     "Cahier de charge",
     "Farm monitor",
@@ -102,10 +175,16 @@ const StatsAgroExpert = () => {
     "Seed Picker",
     "Farm Checker",
   ];
-  const cities = ["Yaounde", "Douala", "Buea", "Kumba", "Maroua"];
+  const series1 = [44, 55, 13, 43, 22];
+  const seriesCity = findOcc(expertCities, "city").map(
+    (item) => item.occurrence
+  );
+  const cities = findOcc(expertCities, "city").map((item) => item.city);
 
-  const countries = ["Cameroon", "Nigeria", "Congo", "Chad", "Ghana"];
-  const countryData = [{ data: [50, 45, 35, 20, 10] }];
+  const countries = findOcc(expertCountries, key).map((item) => item.country);
+  const countryData = [
+    { data: findOcc(expertCountries, key).map((item) => item.occurrence) },
+  ];
 
   return (
     <div className="container items-center px-4 pb-8 pt-2 m-auto mt-5">
@@ -181,7 +260,7 @@ const StatsAgroExpert = () => {
             categories={countries}
           />
 
-          <CityChart series={series1} labels={cities} title="Top Cities" />
+          <CityChart series={seriesCity} labels={cities} title="Top Cities" />
         </div>
       </div>
     </div>
